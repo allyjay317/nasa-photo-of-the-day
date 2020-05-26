@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(./img/sky-space-milky-way-stars-110854.jpg);
+  color: whitesmoke;
 }
 
 code {
@@ -24,4 +26,8 @@ code {
 
 .img-container img{
   width: 100%;
+}
+.img-container iframe {
+  width: 100%;
+  height: 100vh;
 }
