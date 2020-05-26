@@ -4,23 +4,26 @@ import axios from 'axios'
 
 function App() {
   const [nasaData, setNasaData] = useState("")
-
+  
   useEffect(()=>{
+    
     let appData = axios.get("https://api.nasa.gov/planetary/apod?api_key=7UAcwN8x1uVges3J52DVhhSvWTkkXOfi3FxL08b3")
-    .then(data =>
+    .then(data => {
       console.log(data)
-    )
-  }, [nasaData, setNasaData])
+      return setNasaData(data.data)
+    })
+  }, [])
   return (
     <div className="App">
       <header>
         <h1>NASA Photo of the Day</h1>
       </header>
-      <div className="img-container">
-        <p>{/*title of the image*/}</p>
-        <img src="#"></img>
+      <div className="img-container" alt={nasaData.explanation}>
+        <h2>{nasaData.title}</h2>
+        <p>{nasaData.explanation}</p>
+        <img src={nasaData.hdurl}></img>
       </div>
-      <footer>copyright nasa</footer>
+  <footer>Copyright {nasaData.copyright}</footer>
     </div>
   );
 }
