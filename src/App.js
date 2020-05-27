@@ -7,24 +7,42 @@ import Footer from './Footer/Footer'
 
 
 function App() {
+  const [url, setUrl] = useState("https://api.nasa.gov/planetary/apod?api_key=7UAcwN8x1uVges3J52DVhhSvWTkkXOfi3FxL08b3")
   const [nasaData, setNasaData] = useState("")
-  const [textColor, setTextColor] = useState("#FFFFFF");
+  const [date, setDate] = useState("")
+  const [changed, setChanged] = useState(true);
+  const [newDate, setNewDate] = useState("");
+  function newDateHandler(event){
+    event.preventDefault();
+    let newUrl = url.split("&")[0]
+    newUrl = newUrl + "&date=" + newDate;
+    console.log(newUrl);
+    setUrl(newUrl)
+    setChanged(true);
+  }
+  function dateChangeHandler(event){
+    console.log(event.target);
+    setNewDate(event.target.value);
+  }
   useEffect(()=>{
-    
-    let appData = axios.get("https://api.nasa.gov/planetary/apod?api_key=7UAcwN8x1uVges3J52DVhhSvWTkkXOfi3FxL08b3")
-    .then(data => {
-      console.log(data)
-      
-      return setNasaData(data.data)
+    if(changed){
+      setChanged(false);
+      let appData = axios.get(url)
+      .then(data => {
+        console.log(data)
+        return setNasaData(data.data)
     })
-  }, [])
+  }
+  }, [changed])
   return (
     <div className="App">
-      <Header />
+      <Header submitHandler={newDateHandler} changeHandler={dateChangeHandler}/>
       <ImageContainer data={nasaData}/>
       <Footer name={nasaData.copyright} />
     </div>
   );
 }
+
+
 
 export default App;
