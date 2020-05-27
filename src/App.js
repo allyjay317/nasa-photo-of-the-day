@@ -16,12 +16,10 @@ function App() {
     event.preventDefault();
     let newUrl = url.split("&")[0]
     newUrl = newUrl + "&date=" + newDate;
-    console.log(newUrl);
     setUrl(newUrl)
     setChanged(true);
   }
   function dateChangeHandler(event){
-    console.log(event.target);
     setNewDate(event.target.value);
   }
   useEffect(()=>{
@@ -29,7 +27,6 @@ function App() {
       setChanged(false);
       let appData = axios.get(url)
       .then(data => {
-        console.log(data)
         return setNasaData(data.data)
     })
   }
