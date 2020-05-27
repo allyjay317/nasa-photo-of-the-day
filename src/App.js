@@ -9,7 +9,6 @@ import Footer from './Footer/Footer'
 function App() {
   const [url, setUrl] = useState("https://api.nasa.gov/planetary/apod?api_key=7UAcwN8x1uVges3J52DVhhSvWTkkXOfi3FxL08b3")
   const [nasaData, setNasaData] = useState("")
-  const [date, setDate] = useState("")
   const [changed, setChanged] = useState(true);
   const [newDate, setNewDate] = useState("");
   function newDateHandler(event){
@@ -25,7 +24,7 @@ function App() {
   useEffect(()=>{
     if(changed){
       setChanged(false);
-      let appData = axios.get(url)
+      axios.get(url)
       .then(data => {
         return setNasaData(data.data)
     })
