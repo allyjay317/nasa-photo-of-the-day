@@ -1,28 +1,32 @@
 import React from 'react'
 import './image.css'
-import styled from 'styled-components'
+import { css, jsx} from '@emotion/core'
 
-
+/** @jsx jsx */
 
 function Image(props){
     if(props.type ==="image"){
-        return <img className={props.className} src={props.url} alt="NASA Photo of the Day"></img>
+        return <img css={css`
+          width: 100%;
+        `}
+        src={props.url}
+        alt="NASA Photo of the Day" />
       }
     else if(props.type ==="video"){
         return (
           <iframe 
-            className={props.className}
+            css={css`
+              width:100%;
+              height: 100vh;
+            
+            `}
             src={`${props.url}&autoplay=1`}
             frameborder="0"
             allowfullscreen title="NASA Video of the Day"></iframe>
         )
       }
-    return <></>
+    return <div>No Photo of the Day for this day</div>
 }
 
-const StyledImage = styled(Image)`
-  width: 100%;
-  height: ${props => props.type === "video" ? "100vh" : "auto"};
-`;
 
-export default StyledImage
+export default Image

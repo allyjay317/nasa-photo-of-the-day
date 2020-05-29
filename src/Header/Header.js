@@ -1,16 +1,22 @@
 import React from 'react';
 import './Header.css';
-import styled from 'styled-components';
+import { css, jsx} from '@emotion/core'
 
-const BebasFiveRem = styled.h1`
-    font-family: 'Bebas Neue', cursive;
-    font-size: 5rem;
-`;
+/** @jsx jsx */
 
 function Header(props){
     return (
-        <header className={props.className}>
-            <BebasFiveRem>NASA Photo of the Day</BebasFiveRem>
+        <header css={css`
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        `}>
+            <h1 css={css`
+                font-family: 'Bebas Neue', cursive;
+                font-size: 5rem;
+            `}>
+                NASA Photo of the Day
+            </h1>
             
             <div>
                 <p>View another date</p>
@@ -24,10 +30,5 @@ function Header(props){
     )
 }
 
-const StyledHeader = styled(Header)`
-display: flex;
-justify-content: space-around;
-align-items: center;
-`;
 
-export default StyledHeader
+export default Header
