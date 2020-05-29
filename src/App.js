@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from 'axios';
-import ImageContainer from './Image/ImageContainer'
-import Header from './Header/Header'
+import StyledHeader from './Header/Header'
 import Footer from './Footer/Footer'
+import StyledImageContainer from "./Image/ImageContainer";
 
 
 function App() {
@@ -32,8 +32,8 @@ function App() {
   }, [changed])
   return (
     <div className="App">
-      <Header submitHandler={newDateHandler} changeHandler={dateChangeHandler}/>
-      <ImageContainer data={nasaData}/>
+      <StyledHeader submitHandler={newDateHandler} changeHandler={dateChangeHandler}/>
+      <StyledImageContainer data={nasaData}/>
       <Footer name={nasaData.copyright} />
     </div>
   );
